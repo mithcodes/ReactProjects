@@ -1,21 +1,23 @@
-import { useState } from 'react'
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Success from "./pages/Success";
+import Error from "./pages/Error";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
-import Success from './pages/Success'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-  <BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Home/>}/>
-    <Route path="/" element={<Success/>}/>
-    <Route path="/*" element={<Error/>}/>
-  </Routes>
-  </BrowserRouter>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/success"
+          element={<ProtectedRoute element={<Success />} />}
+        />
+        <Route path="/*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
